@@ -1,4 +1,4 @@
-/* gcc -fplan9-extensions unnamed.c */
+/* cc -Wno-microsoft-anon-tag -fms-extensions unnamed.c */
 
 struct foo {
 	int something;
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 	struct foo f;
 	struct lockedfoo *lf = lock(&f);
 
-	use(lf);
+	use(lf); /* Cannot pass &f by mistake. */
 	unlock(lf);
 	return 0;
 }
